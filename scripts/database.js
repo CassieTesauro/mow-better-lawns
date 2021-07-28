@@ -1,51 +1,57 @@
 const database = {
     kids: [
         {
-            id: 1, 
+            id: 1,
             name: "Justin",
             age: 10
         },
         {
-            id: 2, 
+            id: 2,
             name: "Eric",
             age: 42
         },
         {
-            id: 3, 
+            id: 3,
             name: "Erin",
             age: 13
         },
         {
-            id: 4, 
+            id: 4,
             name: "Myriam",
             age: 14
         }
     ],
-    homes: [ 
+    homes: [
         {
-        id: 1,
-        address: "333 Scissorhands lane",
-        size: .25,
-        serviceId: 4
-    },
+            id: 1,
+            address: "333 Scissorhands lane",
+            size: .25,
+            serviceId: 4
+        },
         {
-        id: 2,
-        address: "47 Mars Ave",
-        size: 1.25,
-        serviceId: 2
-    },
+            id: 2,
+            address: "47 Mars Ave",
+            size: 1.25,
+            serviceId: 2
+        },
         {
-        id: 3,
-        address: "1600 Pennsylvania Ave",
-        size: 3,
-        serviceId: 1
-    },
+            id: 3,
+            address: "1600 Pennsylvania Ave",
+            size: 3,
+            serviceId: 1
+        },
         {
-        id: 4,
-        address: "10 Cloverfield Lane",
-        size: 1,
-        serviceId: 3
-    }
+            id: 4,
+            address: "10 Cloverfield Lane",
+            size: 1,
+            serviceId: 3
+        },
+        {
+            id: 5,
+            address: "5592 Kuvalis Unions",
+            size: 8,
+            serviceId: 4
+        }
     ],
     services: [
         {
@@ -97,15 +103,15 @@ const database = {
     ]
 }
 
-export const getKids = () => { //8. Sees that function getKids() copies the data from the kids object array.  Goes back kids.js.
-    return database.kids.map(kid => ({...kid}))
+export const getKids = () => {
+    return database.kids.map(kid => ({ ...kid }))
 }
 export const getHomes = () => {
-    return database.homes.map(home => ({...home}))
+    return database.homes.map(home => ({ ...home }))
 }
 export const getServices = () => {
-    return database.services.map(service => ({...service}))
+    return database.services.map(service => ({ ...service }))
 }
-export const getKidHomeAssignments = () => { //12.  Sees that function getKidHomeAssignments() copies the data from the kidHome object
-    return database.kidHomeAssignments.map(kidhome => ({...kidhome}))
+export const getKidHomeAssignments = () => {
+    return database.kidHomeAssignments.map(kidhome => ({ ...kidhome }))
 }

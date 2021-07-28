@@ -12,45 +12,51 @@ const homes = getHomes();
 const services = getServices();
 const kidHomeAssignments = getKidHomeAssignments();//11. Sees that 'kidHomeAssignments' references a function 'getKidHomeAssignments()'.  Goes to that function definition in database.js
 
+
 const findAssignmentsForKid = (kidObject, kidHomeAssignmentsArray) => {
   let kidHomes = [];
-    for (const kidHomeAssignmentObject of kidHomeAssignmentsArray) {
-      if (kidObject.id === kidHomeAssignmentObject.kidId) {
-        kidHomes.push(kidHomeAssignmentObject)
-      }
+  for (const kidHomeAssignmentObject of kidHomeAssignmentsArray) {
+    if (kidObject.id === kidHomeAssignmentObject.kidId) {
+      kidHomes.push(kidHomeAssignmentObject)
     }
+  }
   return kidHomes;
 };
 
-const findServices = (servicesArray, homesArray) => {
-  let serviceRendered = null;
-  for (const serviceObject of servicesArray) {
-    for (const homeObject of homesArray) {
-      if (serviceObject.id === homeObject.serviceId) {
-        serviceRendered = serviceObject;
-      }
+const findHomeForAssignment = (assignmentHomeId, arrayOfHomes) => {
+  let theHomeIFound = null
+
+  for (const homeObject of arrayOfHomes) {
+    if (homeObject.id === assignmentHomeId) {
+      theHomeIFound = homeObject
     }
   }
-  return serviceRendered;
-};
-
-const findHome = () => {
-    //do stuff here 
+  return theHomeIFound;
 }
 
 export const Kids = () => { //5.  finds Kids() function.  Sees that variable html is defined and references opening tag of unordered list.
   let html = "";            
   html = "<ul>";
 
-  for (const kid of kids) {//6. sees that it must iterate through 'kids'.  looks at top of module to see what 'kids' references.
-  //9. Now that we know kids --> getKids() --> kids array state from database.js, we iterate through each object in that array
-    const assignments = findAssignmentsForKid(kid, kidHomeAssignments); //10.  instatiate variable 'assignments' to reference 'findAssignmentsForKid' function. Takes the arguments 'kid' [we know it's object from kids array] and 'kidHomeAssignments'.  Finds what 'kidsHomeAssignments' references (higher in this module)
-    const foundService = findServices(services, homes);
-    for (const assignment of assignments) {
+  for (const kid of kids) {
+    const filteredAssignmentsForThisKid = findAssignmentsForKid(kid, kidHomeAssignments)
 
+    for (const assignment of filteredAssignmentsForThisKid) {
+      const matchingHome = findHomeForAssignment(assignment.homeId, homes)
 
+      const homeService = services.find(
+        (serviceObject) => {
+          return serviceObject.id === matchingHome.serviceId
+        }
+      )
+
+      html += `<li id="kid--${kid.id}">${kid.name}
+      is assigned to ${matchingHome.address} for the
+      ${homeService.serviceType} service
+      </li>`;
     }
-    html += `<li id="kid--${kid.id}">${kid.name} ${foundService.serviceType} at ${.address}</li>`;
+
+
   }
   html += "</ul>";
   return html;
