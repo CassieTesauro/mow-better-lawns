@@ -103,15 +103,15 @@ const database = {
     ]
 }
 
-export const getKids = () => {
-    return database.kids.map(kid => ({ ...kid }))
+export const getKids = () => {//9.  Finds getKids() function definition.  
+    return database.kids.map(kid => ({ ...kid })) //10. makes a copy of the kids array state from this module available for import in other modules
 }
-export const getHomes = () => {
-    return database.homes.map(home => ({ ...home }))
+export const getHomes = () => {//26. Finds getHomes() function definition.
+    return database.homes.map(home => ({ ...home })) //27. makes a copy of the homes array state from this module available for import in other modules
 }
-export const getServices = () => {
-    return database.services.map(service => ({ ...service }))
+export const getServices = () => { //38. Finds getHomes() function definition.
+    return database.services.map(service => ({ ...service })) //39. makes a copy of the services array from this module available for import in other modules
 }
-export const getKidHomeAssignments = () => {
-    return database.kidHomeAssignments.map(kidhome => ({ ...kidhome }))
+export const getKidHomeAssignments = () => { //13. Finds getKidHomeAssignments() function definition. 
+    return database.kidHomeAssignments.map(kidhome => ({ ...kidhome }))//14. makes a copy of the kidHomeAssignments array state from this module available for import in other modules
 }
